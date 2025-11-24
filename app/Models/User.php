@@ -7,12 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Membresia;
+use App\Models\Cita;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
-    use HasApiTokens;   
+    use HasApiTokens;
     /**
      * The attributes that are mass assignable.
      *
@@ -47,4 +49,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function membresias()
+    {
+        return $this->belongsToMany(Membresia::class, 'cliente_membresia', 'id_cliente', 'id_membresia');
+    }
+
+    public function citas()
+    {
+        return $this->hasMany(Cita::class, 'id_cliente');
+    }
+
 }
