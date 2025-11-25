@@ -9,6 +9,18 @@ class Membresia extends Model
     protected $table = 'membresias';
     protected $primaryKey = 'id_membresia';
 
+    const TIPOS = [
+        'Essencial',
+        'Glamour',
+        'Luxury',
+    ];
+
+    const PRECIOS = [
+        'Essencial' => 70,
+        'Glamour'   => 200,
+        'Luxury'    => 500,
+    ];
+
     protected $fillable = [
         'nombre',
         'costo',
